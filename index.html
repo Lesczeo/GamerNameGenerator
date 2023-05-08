@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <title>Loading ...</title>
+</head>
+<body id="body" onload="NomeTudoNovo()">
+    <div id="content">
+        <div id="intro" class="content__child">
+            <div id="phrases">
+                <span>Low on ideas for a new artist name?</span>
+            </div>
+        </div>
+        <div id="nameGen" class="content__child">
+            <button id="btn_NameInput" class="textHover"
+            title="Click to copy!" type="text"
+            placeholder="Loading ..."></button>
+        </div>
+        <div id="commander" class="content__child">
+            <button id="btn_FstNamSavNew" type="button"
+            class="buttons commander__button textHover">
+                New keeping 1<sup>ST</sup> name
+            </button>
+            <button id="btn_NotSavedNew" type="button"
+            class="buttons commander__button textHover">
+                Make a new name
+            </button>
+            <button id="btn_SndNamSavNew" type="button"
+            class="buttons commander__button textHover">
+                New keeping 2<sup>ND</sup> name
+            </button>
+        </div>
+        <footer id="footer" class="content__child">
+            <a href="https://github.com/Lesczeo?tab=repositories"
+            id="contact" target="_blank" rel="noreferrer">
+                @Lesczeo's Github
+            </a>
+        </footer>
+    </div>
+</body>
+<script src="index.js"></script>
+<script>
+
+    const data = new Date();
+    let ano = data.getFullYear();
+    
+    const nameInput = document.querySelector("#btn_NameInput");
+    const contato = document.querySelector("#contact");
+
+    contato.innerHTML = contato.innerHTML + ` - ${ano}`;
+
+    function copyToClipboard() {
+        // Pega o elemento com o nome gerado:
+        var nameBox = document.getElementById("btn_NameInput");
+
+        // Usa a API clipboard para copiar o nome gerado dentro desse elemento:
+        // OBS: Conferir https://stackoverflow.com/questions/56306153/domexception-on-calling-navigator-clipboard-readtext
+
+        navigator.clipboard.writeText(nameBox.innerHTML).then(() => {
+            const success = "\u2728";
+            alert(`${success} Copied ${nameBox.innerHTML} to clipboard!`);
+        });
+    }
+
+    // Associa o CopyToClipboard ao input do nome gerado, que ocorre ao clicar:
+    nameInput.addEventListener("click", copyToClipboard);
+    
+
+</script>
+</html>

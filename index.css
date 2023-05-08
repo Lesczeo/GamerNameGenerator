@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Darumadrop+One&family=Press+Start+2P&display=swap');
+
+:root{
+    --fullGap: 8%;
+    --minGap: calc((50*var(--fullGap))/100);
+    --panelBG: rgb(0,0,0,0.3);
+    --fullRadius: 25px;
+    --minRadius: calc((50*var(--fullRadius))/100);
+}
+
+html{
+    height: -webkit-fill-available;
+    background: linear-gradient(orange 0%, fuchsia 125%);
+    font-family: 'Darumadrop One', cursive;
+    color: white;
+}
+
+#body{
+    margin: var(--minGap) var(--fullGap) 0 var(--fullGap);
+    padding: 0 var(--minGap);
+    background-color: var(--panelBG);
+    border-radius: var(--fullRadius);
+}
+
+    #content{
+        display: grid;
+        grid-template-rows: 20% auto 20% 10%;
+        grid-template-columns: 100%;
+        height: 45vw;  
+    }
+        .content__child{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #intro{
+            font-weight: bold;
+            font-size: 150%;
+            letter-spacing: 0.1em;
+        }
+
+            #phrases{
+                display: grid;
+                grid-template-rows: 50% 50%;
+                text-align: center;
+            }
+            #phrases.selected:after, #phrases:hover:after{
+                color: springgreen;
+                content: "... maybe you just need some poetry!";
+            }
+
+        #nameGen{
+            padding: var(--minGap);
+            background-color: var(--panelBG);
+            border-radius: var(--minRadius);
+        }
+            #btn_NameInput{
+                margin: var(--minGap);
+                text-align: center;
+                border: 0px;
+                background-color: transparent;
+                font-size: x-large;
+                font-family: 'Press Start 2P', cursive;
+                color: white;
+            }
+            #btn_NameInput:hover::before{
+                content: "\2728";
+            }
+            #btn_NameInput:hover::after{
+                content: "\2728";
+            }
+
+
+        #commander{
+            justify-content: space-between;
+        }
+            .buttons{
+                padding: 10px;
+                border-width: 0px;
+                border-radius: var(--minRadius);
+            }
+            .buttons:hover{
+                background-color: rgb(0,0,0,0.4);
+            }
+
+            .commander__button{
+                width: 32%;
+                height: 80%;
+                background-color: var(--panelBG);
+                color: white;
+                font-family: 'Press Start 2P', cursive;
+            }
+
+        #footer{
+            align-items: unset;
+        }
+            #contact{
+                color: white;
+                text-decoration: none;
+            }
+            #contact:visited{
+                color: white;
+            }
+            #contact:hover{
+                font-size: large;
+            }
+
+.textHover:hover{
+    cursor: pointer;
+    font-size: 105%;
+    color: springgreen !important;
+}
+
+@media (max-width: 1100px) {
+    #content{
+        height: 50vw;
+    }
+}
+
+@media (max-width: 850px) {
+    #content{
+        grid-template-rows: 20% auto 25% 10%;
+        height: 60vw;
+    }
+}
+
+@media (max-width: 750px) {
+    #content{
+        grid-template-rows: 20% auto 30% 10%;
+        height: 90vw;
+    }
+
+        #commander{
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+            .commander__button{
+                width: 100%;
+                height: 25%;
+            }
+}
