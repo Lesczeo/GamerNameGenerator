@@ -99,7 +99,7 @@ function updatePageContent() {
     const contato = document.querySelector("#contact");
     const data = new Date();
     // Acrescenta o ano atual ao conteúdo do contato:
-    contato.innerHTML = contato.innerHTML+` - ${data.getFullYear()}`;
+    contato.innerHTML += ` - ${data.getFullYear()}`;
     
     // Atualiza o título da página com o nome real do projeto:
     document.title = "Gamer Name Generator";
