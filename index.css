@@ -44,6 +44,7 @@ html{
                 display: grid;
                 grid-template-rows: 50% 50%;
                 text-align: center;
+                cursor: help;
             }
             #phrases.selected:after, #phrases:hover:after{
                 color: springgreen;
