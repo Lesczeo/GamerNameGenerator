@@ -3,7 +3,7 @@
 :root{
     --fullGap: 8%;
     --minGap: calc((50*var(--fullGap))/100);
-    --panelBG: rgb(0,0,0,0.3);
+    --interfacesBG: rgb(0,0,0,0.3);
     --fullRadius: 25px;
     --minRadius: calc((50*var(--fullRadius))/100);
 }
@@ -18,7 +18,7 @@ html{
 #body{
     margin: var(--minGap) var(--fullGap) 0 var(--fullGap);
     padding: 0 var(--minGap);
-    background-color: var(--panelBG);
+    background-color: var(--interfacesBG);
     border-radius: var(--fullRadius);
 }
 
@@ -53,10 +53,12 @@ html{
 
         #nameGen{
             padding: var(--minGap);
-            background-color: var(--panelBG);
+            background-color: var(--interfacesBG);
             border-radius: var(--minRadius);
+            flex-direction: column;
         }
             #btn_NameInput{
+                min-height: 40%;
                 margin: var(--minGap);
                 text-align: center;
                 border: 0px;
@@ -65,12 +67,34 @@ html{
                 font-family: 'Press Start 2P', cursive;
                 color: white;
             }
+            #btn_NameInput:hover{
+                letter-spacing: 0.25em;
+            }
             #btn_NameInput:hover::before{
                 content: "\2728";
             }
             #btn_NameInput:hover::after{
                 content: "\2728";
             }
+
+            #nameHistory{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                min-height: 40%;
+                background-color: transparent;
+                border-radius: var(--minRadius);
+            }
+                .loggedName{
+                    color: gray;
+                    background-color: transparent;
+                    font-family: 'Darumadrop One', cursive;
+                    width: 19%;
+                }
+                .loggedName:hover{
+                    font-family: 'Press Start 2P', cursive;
+                }
 
 
         #commander{
@@ -81,16 +105,16 @@ html{
                 border-width: 0px;
                 border-radius: var(--minRadius);
             }
-            .buttons:hover{
-                background-color: rgb(0,0,0,0.4);
-            }
 
             .commander__button{
                 width: 32%;
                 height: 80%;
-                background-color: var(--panelBG);
+                background-color: var(--interfacesBG);
                 color: white;
                 font-family: 'Press Start 2P', cursive;
+            }
+            .commander__button:hover{
+                background-color: rgb(0,0,0,0.4);
             }
 
         #footer{
@@ -109,8 +133,11 @@ html{
 
 .textHover:hover{
     cursor: pointer;
-    font-size: 105%;
     color: springgreen !important;
+}
+
+.zoomHover:hover{
+    font-size: 105%;
 }
 
 @media (max-width: 1100px) {

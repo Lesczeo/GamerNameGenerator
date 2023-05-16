@@ -16,21 +16,22 @@
             </div>
         </div>
         <div id="nameGen" class="content__child">
-            <button id="btn_NameInput" class="textHover"
+            <button id="btn_NameInput" class="textHover zoomHover"
             title="Click to copy!" type="text"
             placeholder="Loading ..."></button>
+            <div id="nameHistory"></div>
         </div>
         <div id="commander" class="content__child">
             <button id="btn_FstNamSavNew" type="button"
-            class="buttons commander__button textHover">
+            class="buttons commander__button textHover zoomHover">
                 New keeping 1<sup>ST</sup> name
             </button>
             <button id="btn_NotSavedNew" type="button"
-            class="buttons commander__button textHover">
+            class="buttons commander__button textHover zoomHover">
                 Make a new name
             </button>
             <button id="btn_SndNamSavNew" type="button"
-            class="buttons commander__button textHover">
+            class="buttons commander__button textHover zoomHover">
                 New keeping 2<sup>ND</sup> name
             </button>
         </div>
@@ -42,29 +43,4 @@
         </footer>
     </div>
 </body>
-<!--<script>
-    const data = new Date();
-    let ano = data.getFullYear();
-    
-    const nameInput = document.querySelector("#btn_NameInput");
-    const contato = document.querySelector("#contact");
-
-    contato.innerHTML = contato.innerHTML + ` - ${ano}`;
-
-    function copyToClipboard() {
-        // Pega o elemento com o nome gerado:
-        var nameBox = document.getElementById("btn_NameInput");
-
-        // Usa a API clipboard para copiar o nome gerado dentro desse elemento:
-        // OBS: Conferir https://stackoverflow.com/questions/56306153/domexception-on-calling-navigator-clipboard-readtext
-
-        navigator.clipboard.writeText(nameBox.innerHTML).then(() => {
-            const success = "\u2728";
-            alert(`${success} Copied ${nameBox.innerHTML} to clipboard!`);
-        });
-    }
-
-    // Associa o CopyToClipboard ao input do nome gerado, que ocorre ao clicar:
-    nameInput.addEventListener("click", copyToClipboard);
-</script>-->
 </html>

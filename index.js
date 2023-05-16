@@ -1,99 +1,53 @@
 import * as GenButtons from "./JSmodules/GenButtons.js";
+import { SalvaNomeNoHistorico } from "./JSmodules/NameHistory.js";
 
 const nameBox = document.querySelector("#btn_NameInput");
+const historico = document.querySelector("#nameHistory");
 const btnSegNovo = document.querySelector("#btn_FstNamSavNew");
 const btnTudoNovo = document.querySelector("#btn_NotSavedNew");
 const btnPriNovo = document.querySelector("#btn_SndNamSavNew");
-
-/* Gera uma palavra, tanto adjetivo quanto substantivo,
-para formar um nome; com base em uma lista dessas palavras:
-function GeraPalavra(palavraBase,arrayDePalavrasIrmas) {
-
-    // Pega uma palavra na lista com base em uma posição aleatória:
-    let palavraGerada = arrayDePalavrasIrmas[Math.floor(Math.random() * arrayDePalavrasIrmas.length)];
-
-    // Verifica-se se a palavra sorteada é a mesma da palavra base:
-    while (palavraGerada == palavraBase) {
-        // Se ela é, reescolhe uma palavra na lista para garantir aleatoriedade:
-        palavraGerada = arrayDePalavrasIrmas[Math.floor(Math.random() * arrayDePalavrasIrmas.length)];
-    }
-
-    /* Finalmente, envia a palavra gerada para ser usada com a
-    primeira letra em maiúsculo:
-    return(palavraGerada.charAt(0).toUpperCase() + palavraGerada.slice(1));
-}
-function NomeTudoNovo() {
-    let nome = nameBox.innerHTML;
-    const adjAtual = nome.substring(0, nome.indexOf(' '));
-    const subsAtual = nome.substring(nome.indexOf(' ') + 1);
-
-    let adjGerado = listaDeAdjetivos[Math.floor(Math.random() * listaDeAdjetivos.length)];
-    let subsGerado = listaDeSubstantivos[Math.floor(Math.random() * listaDeSubstantivos.length)];
-
-    // pegar um adjetivo aleatório não igual ao atual:
-    const primeiroNome = GeraPalavra(adjAtual,listaDeAdjetivos);
-
-    // pegar um substantivo aleatório não igual ao atual:
-    const segundoNome = GeraPalavra(subsAtual,listaDeSubstantivos);
-
-    // formatar a string com os valores aleatórios: Adjetivo + Substantivo
-    nome = `${primeiroNome} ${segundoNome}`;
-
-    // Atualiza no documento/site o novo nome gerado:
-    nameBox.innerHTML = nome;
-}
-function NomeSubsNovo() {
-    let nome = nameBox.innerHTML;
-
-    // conserva-se o adjetivo (a primeira palavra) do nome conforme solicitado:
-    const primeiroNome = nome.substring(0, nome.indexOf(' '));
-
-    // pega o substantivo, que mudará de valor:
-    const subsAtual = nome.substring(nome.indexOf(' ') + 1);
-    // o substantivo mudará mas não deverá ser igual ao atual:
-    const segundoNome = GeraPalavra(subsAtual,listaDeSubstantivos);
-
-    // formatar a string com o adjetivo conservado e o valor aleatório, respectivamente:
-    nome = `${primeiroNome} ${segundoNome}`;
-
-    // atribui a string formatada ao documento:
-    nameBox.innerHTML = nome;
-}
-function NomeAdjsNovo() {
-    let nome = nameBox.innerHTML;
-
-    // conserva-se o substantivo (a segunda palavra) do nome conforme solicitado:
-    const segundoNome = nome.substring(nome.indexOf(' ') + 1);
-
-    // pega o adjetivo, que mudará de valor:
-    const adjAtual = nome.substring(0, nome.indexOf(' '));
-    // o adjetivo mudará mas não deverá ser igual ao atual:
-    const primeiroNome = GeraPalavra(adjAtual,listaDeAdjetivos);
-
-    // formatar a string com o valor aleatório e o substantivo conservado, respectivamente:
-    nome = `${primeiroNome} ${segundoNome}`;
-
-    // atribui a string formatada ao documento:
-    nameBox.innerHTML = nome;
-} */
 
 /* Copia o nome gerado dentro do nameBox: */
 function copyToClipboard() {
 
     // Copia o innerHTML do nome gerado para o clipboard pela API:
-    navigator.clipboard.writeText(nameBox.innerHTML)
+    navigator.clipboard.writeText(nameBox.value)
 
     // e então cria um alert indicando que o nome da caixa foi copiado:
     .then(() => {
         const success = "\u2728"; // <= emoji hexadecimal decorativo "sparkles"
-        alert(`${success} Copied ${nameBox.innerHTML} to clipboard!`);
+        alert(`${success} Copied ${nameBox.value} to clipboard!`);
     });
+}
+
+// Gera campos, para que nomes gerados anteriormente possam ser reacessados:
+function geraCamposNomesAntigos(minimo, maximo) {
+    // Adiciona-se os campos com base em restrições:
+    for(var inicio = minimo; inicio < maximo ; inicio++){
+        // cria-se os campos no documento:
+        const novoCampo = document.createElement("button");
+        novoCampo.setAttribute("class", "buttons");
+        novoCampo.classList.add("loggedName");
+        /* Observe que não é possível adicionar um eventListener neste
+        momento por causa do valor "..." padrão. Um evento deve ser
+        adicionado somente quando o campo deixar de ter o valor padrão, ou
+        seja, ser escrito com um nome significativo: */
+        novoCampo.value = "...";
+        novoCampo.innerHTML = novoCampo.value;
+
+        // adiciona ao histórico como um elemento filho:
+        historico.appendChild(novoCampo);
+    }
 }
 
 /* Atauliza alguns focos de conteúdo da página: */
 function updatePageContent() {
+    /* Gera os 5 "chances" para reescolher nomes antigos no histórico.
+    Os campos serão gerados inicialmente em branco: */
+    geraCamposNomesAntigos(0,5);
+
     // Garante que um nome seja gerado ao menos uma vez ao carregar a página:
-    GenButtons.NomeTudoNovo();
+    GenButtons.Primo_NomeTudoNovo();
 
     // Escreve o ano atual correspondente no fim da página:
     const contato = document.querySelector("#contact");
@@ -106,6 +60,7 @@ function updatePageContent() {
 }
 
 // Associando eventos aos elementos HTML:
+nameBox.addEventListener("click", copyToClipboard);
 nameBox.addEventListener("click", copyToClipboard);
 btnSegNovo.addEventListener("click", GenButtons.NomeSubsNovo);
 btnTudoNovo.addEventListener("click", GenButtons.NomeTudoNovo);
