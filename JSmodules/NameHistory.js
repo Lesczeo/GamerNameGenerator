@@ -2,8 +2,6 @@
 const nameBox = document.querySelector("#btn_NameInput");
 const historico = document.querySelector("#nameHistory");
 
-
-
 /* Traz palavras supostamente descartadas a uma lista histórico,
 que permite ao usuário volte atrás com um nome caso mude de ideia: */
 export function SalvaNomeNoHistorico(){
@@ -19,14 +17,7 @@ export function SalvaNomeNoHistorico(){
 
 // Funções MISCESLÂNEAS:
 
-/* function SalvaNomeNameBox(){
-    Não se pode comparar da forma habitual, pois pode-se gerar um
-    nome e resurgir outro em qualquer momento para o usuário. 
-    if([...historico.children].find((nome) => nome.value === "...")){
-
-    } else {}
-} */ 
-
+/*  */
 function SalvaEmCampoLivre(camposEscolhido){
     camposEscolhido.value = nameBox.value;
     camposEscolhido.innerHTML = camposEscolhido.value;

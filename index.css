@@ -41,14 +41,17 @@ html{
         }
 
             #phrases{
-                display: grid;
-                grid-template-rows: 50% 50%;
+                display: flex;
+                flex-direction: column;
                 text-align: center;
                 cursor: help;
             }
-            #phrases.selected:after, #phrases:hover:after{
+            #phrases span:nth-last-child(1){
                 color: springgreen;
-                content: "... maybe you just need some poetry!";
+                display: initial;
+            }
+            .hidePhraseHover{
+                display: none !important;
             }
 
         #nameGen{

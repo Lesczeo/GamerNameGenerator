@@ -1,11 +1,16 @@
 import * as GenButtons from "./JSmodules/GenButtons.js";
-import { SalvaNomeNoHistorico } from "./JSmodules/NameHistory.js";
 
+const introPhrase = document.querySelector("#phrases");
 const nameBox = document.querySelector("#btn_NameInput");
 const historico = document.querySelector("#nameHistory");
 const btnSegNovo = document.querySelector("#btn_FstNamSavNew");
 const btnTudoNovo = document.querySelector("#btn_NotSavedNew");
 const btnPriNovo = document.querySelector("#btn_SndNamSavNew");
+
+// 
+function togglePhraseHover(){
+    introPhrase.lastElementChild.classList.toggle("hidePhraseHover");
+}
 
 /* Copia o nome gerado dentro do nameBox: */
 function copyToClipboard() {
@@ -42,7 +47,8 @@ function geraCamposNomesAntigos(minimo, maximo) {
 
 /* Atauliza alguns focos de conteúdo da página: */
 function updatePageContent() {
-    /* Gera os 5 "chances" para reescolher nomes antigos no histórico.
+
+    /* Gera 5 "chances" para reescolher nomes antigos no histórico.
     Os campos serão gerados inicialmente em branco: */
     geraCamposNomesAntigos(0,5);
 
@@ -65,6 +71,8 @@ nameBox.addEventListener("click", copyToClipboard);
 btnSegNovo.addEventListener("click", GenButtons.NomeSubsNovo);
 btnTudoNovo.addEventListener("click", GenButtons.NomeTudoNovo);
 btnPriNovo.addEventListener("click", GenButtons.NomeAdjsNovo);
+introPhrase.addEventListener("mouseover", togglePhraseHover);
+introPhrase.addEventListener("mouseout", togglePhraseHover);
 // Garante que conteúdos da página sejam mais significativos ao carregar:
 window.addEventListener('load', updatePageContent);
 
